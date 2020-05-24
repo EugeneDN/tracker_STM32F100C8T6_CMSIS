@@ -10,7 +10,7 @@
  * AHB = APB1 = APB2 = 24MHz;
  * HSE selected as system clock
  */
-uint8_t rcc_init(void) {
+void rcc_init(void) {
   
   RCC->CR |= RCC_CR_HSEON;
 
@@ -19,7 +19,7 @@ uint8_t rcc_init(void) {
       break;
     if(i > 0x500) {
       RCC->CR &= ~(RCC_CR_HSEON);
-      return 1;
+      HardFault_Handler();
     }
   }
 
@@ -37,7 +37,7 @@ uint8_t rcc_init(void) {
     if(i > 0x500) {
       RCC->CR &= ~(RCC_CR_PLLON);
       RCC->CR &= ~(RCC_CR_HSEON);
-      return 2;
+      HardFault_Handler();
     }
   }
 
@@ -50,7 +50,5 @@ uint8_t rcc_init(void) {
   RCC->CFGR |= RCC_CFGR_SW_HSE;
 
   while((RCC->CFGR & RCC_CFGR_SW_0) != RCC_CFGR_SW_HSE)
-	  ;
-
-  return 0;
+    ;
 }

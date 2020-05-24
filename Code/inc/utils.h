@@ -2,7 +2,8 @@
 #define CODE_INC_UTILS_H_
 
 #include "stm32f10x.h"
+#include "stm32f10x_it.h"
 
-uint8_t rcc_init(void);
+void rcc_init(void);
 
 #endif /* CODE_INC_MAIN_H_ */

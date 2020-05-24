@@ -7,5 +7,6 @@
 
 #include "stm32f10x.h"
 #include "utils.h"
+#include "uart.h"
 
 #endif /* CODE_INC_MAIN_H_ */
